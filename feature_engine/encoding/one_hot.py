@@ -290,7 +290,7 @@ class OneHotEncoder(CategoricalMethodsMixin, CategoricalInitMixin):
         X.drop(labels=self.variables_, axis=1, inplace=True)
 
         return X
-
+    
     def inverse_transform(self, X: pd.DataFrame):
         """inverse_transform is not implemented for this transformer."""
         raise NotImplementedError(
@@ -308,7 +308,7 @@ class OneHotEncoder(CategoricalMethodsMixin, CategoricalInitMixin):
 
     def _add_new_feature_names(self, feature_names) -> List:
         """Adds new features to df columns, and removes categoricals."""
-        feature_names = feature_names + self._get_new_features_name()
         feature_names = [f for f in feature_names if f not in self.variables_]
-
+        feature_names = feature_names + self._get_new_features_name()
+        
         return feature_names
